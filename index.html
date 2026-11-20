@@ -1,1 +1,149 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOEL DOWNLOADS</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#090611;
+ color:white;
+}
+header{
+ background:#160d27;
+ padding:22px 15px;
+ text-align:center;
+ border-bottom:2px solid #9b4dff;
+}
+header h1{color:#bd83ff;margin:0}
+header p{color:#c9b7dc}
+.hero{text-align:center;padding:35px 15px}
+.hero h2{font-size:27px}
+.hero span{color:#bd83ff}
+input{
+ width:90%;max-width:450px;
+ padding:14px;border-radius:10px;
+ border:1px solid #9b4dff;
+ background:#1b1428;color:white;
+}
+.categories{
+ display:flex;flex-wrap:wrap;
+ justify-content:center;gap:10px;
+ padding:15px;
+}
+button{
+ background:#32165b;color:white;
+ border:1px solid #a45aff;
+ padding:11px 16px;
+ border-radius:20px;
+}
+button.active{background:#9333ea}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:14px;padding:15px;
+ max-width:800px;margin:auto;
+}
+.card{
+ background:#1a1227;
+ padding:17px 10px;
+ border-radius:13px;
+ border:1px solid #392450;
+ text-align:center;
+}
+.card h3{color:#c69aff}
+.download{
+ display:inline-block;
+ background:#9333ea;color:white;
+ padding:10px 15px;
+ border-radius:8px;
+ text-decoration:none;
+ margin-top:8px;
+}
+footer{
+ text-align:center;padding:25px;
+ color:#b8a5ca;
+ border-top:1px solid #392450;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>YOEL DOWNLOADS</h1>
+<p>DOWNLOAD • DISCOVER • ENJOY</p>
+</header>
+
+<section class="hero">
+<h2>Welcome to <span>YOEL DOWNLOADS</span></h2>
+<p>Your digital download center</p>
+<input id="search" placeholder="Search downloads..." oninput="filterItems()">
+</section>
+
+<div class="categories">
+<button class="active" onclick="filterCategory('All',this)">All</button>
+<button onclick="filterCategory('Apps',this)">Apps</button>
+<button onclick="filterCategory('Games',this)">Games</button>
+<button onclick="filterCategory('Movies',this)">Movies</button>
+<button onclick="filterCategory('Music',this)">Music</button>
+</div>
+
+<main class="grid" id="downloads">
+<div class="card" data-category="Apps">
+<h3>Android Apps</h3>
+<p>Useful Android applications</p>
+<a class="download" href="#" >Coming Soon</a>
+</div>
+
+<div class="card" data-category="Games">
+<h3>PSP Games</h3>
+<p>Discover PSP games</p>
+<a class="download" href="#">Coming Soon</a>
+</div>
+
+<div class="card" data-category="Movies">
+<h3>Movies</h3>
+<p>Discover movies</p>
+<a class="download" href="#">Coming Soon</a>
+</div>
+
+<div class="card" data-category="Music">
+<h3>Music</h3>
+<p>Discover music</p>
+<a class="download" href="#">Coming Soon</a>
+</div>
+</main>
+
+<footer>
+<p>© 2026 YOEL DOWNLOADS</p>
+<p>All Rights Reserved</p>
+</footer>
+
+<script>
+let category="All";
+
+function filterCategory(value,button){
+ category=value;
+ document.querySelectorAll(".categories button")
+ .forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ filterItems();
+}
+
+function filterItems(){
+ let search=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".card").forEach(card=>{
+ let matchesCategory=category==="All"||card.dataset.category===category;
+ let matchesSearch=card.innerText.toLowerCase().includes(search);
+ card.style.display=matchesCategory&&matchesSearch?"block":"none";
+ });
+}
+</script>
+
+</body>
+</html>
+
